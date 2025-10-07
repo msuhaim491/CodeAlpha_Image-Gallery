@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Image Gallery | Premium Portfolio Experience</title>
+    <meta name="description" content="A luxury image gallery with sophisticated dark theme, advanced filtering, and premium lightbox functionality for professional portfolios.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-gem"></i>
+                <span>Luxury Gallery</span>
+            </div>
+            <div class="nav-stats">
+                <span class="stat-item">
+                    <i class="fas fa-images"></i>
+                    <span id="totalImages">12</span> Images
+                </span>
+                <span class="stat-item">
+                    <i class="fas fa-filter"></i>
+                    <span id="activeFilter">All</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Luxury Image Gallery</h1>
+                <p class="hero-subtitle">Experience premium photography with our sophisticated gallery platform</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="heroTotalImages">12</div>
+                        <div class="stat-label">Total Images</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">HD</div>
+                        <div class="stat-label">Quality</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="filter-section">
+            <div class="filter-header">
+                <h2>Browse by Category</h2>
+                <p>Filter images by category to find exactly what you're looking for</p>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i>
+                    <span>All Images</span>
+                    <span class="filter-count" id="count-all">12</span>
+                </button>
+                <button class="filter-btn" data-filter="nature">
+                    <i class="fas fa-mountain"></i>
+                    <span>Nature</span>
+                    <span class="filter-count" id="count-nature">4</span>
+                </button>
+                <button class="filter-btn" data-filter="city">
+                    <i class="fas fa-city"></i>
+                    <span>Urban</span>
+                    <span class="filter-count" id="count-city">3</span>
+                </button>
+                <button class="filter-btn" data-filter="abstract">
+                    <i class="fas fa-palette"></i>
+                    <span>Abstract</span>
+                    <span class="filter-count" id="count-abstract">3</span>
+                </button>
+                <button class="filter-btn" data-filter="people">
+                    <i class="fas fa-user"></i>
+                    <span>Portraits</span>
+                    <span class="filter-count" id="count-people">2</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <div class="gallery-controls">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="masonry" title="Masonry View">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
+                    <div class="sort-controls">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="default">Sort by Default</option>
+                            <option value="title">Sort by Title</option>
+                            <option value="category">Sort by Category</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <span id="galleryCount">Showing 12 images</span>
+                </div>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+            </div>
+        </section>
+
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-backdrop"></div>
+            <div class="lightbox-container">
+                <div class="lightbox-header">
+                    <div class="lightbox-title">
+                        <h3 id="imageTitle">Image Title</h3>
+                        <span class="image-counter">
+                            <span id="currentImageNumber">1</span> of <span id="totalImageNumber">12</span>
+                        </span>
+                    </div>
+                    <div class="lightbox-controls">
+                        <button class="lightbox-btn" id="downloadBtn" title="Download Image">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="lightbox-btn" id="fullscreenBtn" title="Fullscreen">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="lightbox-btn close-btn" id="closeBtn" title="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="lightbox-content">
+                    <button class="nav-btn prev-btn" id="prevBtn" title="Previous Image">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="image-container">
+                        <img class="lightbox-image" id="lightboxImage" src="" alt="">
+                        <div class="image-loading" id="imageLoading">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <button class="nav-btn next-btn" id="nextBtn" title="Next Image">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="lightbox-footer">
+                    <div class="image-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i>
+                            <span id="imageCategory">Category</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span id="imageDate">2024</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-camera"></i>
+                            <span id="imageCamera">Professional</span>
+                        </div>
+                    </div>
+                    <div class="image-actions">
+                        <button class="action-btn" id="shareBtn">
+                            <i class="fas fa-share-alt"></i>
+                            Share
+                        </button>
+                        <button class="action-btn" id="favoriteBtn">
+                            <i class="far fa-heart"></i>
+                            Favorite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-gem"></i>
+                    <span>Luxury Gallery</span>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2024 Luxury Image Gallery. All rights reserved.</p>
+                    <p>Crafted with premium technologies for an exceptional viewing experience.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
